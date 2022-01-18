@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">KmmApp</string>
+    <string name="app_name">Wanted By FBI</string>
 
     <string name="successful">Successful</string>
     <string name="unsuccessful">Unsuccessful</string>
     <string name="no_data">No data</string>
+
+    <string name="name_field">%s</string>
+    <string name="description_field">Description: %s</string>
+    <string name="date_of_birth_field">Date of Birth: %s</string>
+    <string name="place_of_birth_field">Place of Birth: %s</string>
+    <string name="hair_field">Hair: %s</string>
+    <string name="eyes_field">Eyes: %s</string>
+    <string name="height_field">Height: %s</string>
+    <string name="weight_field">Weight: %s</string>
+    <string name="sex_field">Sex: %s</string>
+    <string name="race_field">Race: %s</string>
+    <string name="nationality_field">Nationality: %s</string>
+    <string name="complexion_field">Complexion: %s</string>
+    <string name="scars_and_marks_field">Scars and marks: %s</string>
+    <string name="reward_field">Reward: %s</string>
+    <string name="details_field">Details: %s</string>
+    <string name="remarks_field">Remarks: %s</string>
+    <string name="caution_field">Caution: %s</string>
+    <string name="warning_field">Warning: %s</string>
 
 </resources>

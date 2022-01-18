@@ -7,13 +7,23 @@ plugins {
     id("com.squareup.sqldelight")
 }
 
-group = "com.jetbrains.handson"
+group = "com.ozmaden.wantedbyfbi"
 version = "1.0-SNAPSHOT"
 
 kotlin {
     android()
+    
+//    listOf(
+//        iosX64(),
+//        iosArm64(),
+//        //iosSimulatorArm64() sure all ios dependencies support this target
+//    ).forEach {
+//        it.binaries.framework {
+//            baseName = "shared"
+//        }
+//    }
 
-    val iosTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
+    val iosTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget =
         if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
             ::iosArm64
         else
@@ -27,19 +37,20 @@ kotlin {
         }
     }
 
-    val ktorVersion = "1.6.1"
     val serializationVersion = "1.2.2"
-    val sqlDelightVersion: String by project
     val coroutinesVersion = "1.5.0-native-mt"
+    val ktorVersion = "1.6.1"
+    val sqlDelightVersion: String by project
 
     sourceSets {
         val commonMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:$serializationVersion")
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-serialization:$ktorVersion")
                 implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                implementation("io.coil-kt:coil:1.4.0")
             }
         }
         val commonTest by getting {
@@ -49,7 +60,7 @@ kotlin {
             }
         }
         val androidMain by getting {
-            dependencies {
+            dependencies{
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
@@ -71,16 +82,16 @@ kotlin {
 }
 
 android {
-    compileSdkVersion(30)
+    compileSdk = 31
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdkVersion(21)
-        targetSdkVersion(30)
+        minSdk = 21
+        targetSdk = 31
     }
 }
 
 sqldelight {
     database("AppDatabase") {
-        packageName = "com.ozmaden.wanted.kmm.shared.cache"
+        packageName = "com.ozmaden.wantedbyfbi.shared.cache"
     }
 }

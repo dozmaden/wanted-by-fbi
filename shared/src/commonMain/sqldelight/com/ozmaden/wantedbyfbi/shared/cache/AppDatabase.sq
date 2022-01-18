@@ -1,0 +1,13 @@
+CREATE TABLE WantedPersons (
+    uid TEXT NOT NULL
+);
+
+insertPerson:
+INSERT INTO WantedPersons(uid)
+VALUES (?);
+
+removeAllPeople:
+DELETE FROM WantedPersons;
+
+selectAllPeople:
+SELECT * FROM WantedPersons;

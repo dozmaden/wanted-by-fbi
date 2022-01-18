@@ -6,8 +6,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "KMMApp"
-
+rootProject.name = "WantedByFBI"
 include(":androidApp")
 include(":shared")
-

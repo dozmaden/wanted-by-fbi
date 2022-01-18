@@ -3,6 +3,22 @@ plugins {
     kotlin("android")
 }
 
+android {
+    compileSdk = 31
+    defaultConfig {
+        applicationId = "com.ozmaden.wanted_by_fbi.android"
+        minSdk = 21
+        targetSdk = 31
+        versionCode = 1
+        versionName = "1.0"
+    }
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+        }
+    }
+}
+
 dependencies {
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.3.0")
@@ -14,29 +30,5 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.cardview:cardview:1.0.0")
+    implementation("io.coil-kt:coil:1.4.0")
 }
-
-android {
-    compileSdkVersion(30)
-    defaultConfig {
-        applicationId = "com.jetbrains.handson.androidApp"
-        minSdkVersion(21)
-        targetSdkVersion(30)
-        versionCode = 1
-        versionName = "1.0"
-    }
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-}
-
