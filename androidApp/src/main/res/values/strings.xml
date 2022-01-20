@@ -23,6 +23,5 @@
     <string name="details_field">Details: %s</string>
     <string name="remarks_field">Remarks: %s</string>
     <string name="caution_field">Caution: %s</string>
-    <string name="warning_field">Warning: %s</string>
-
+    <string name="warning_field">%s</string>
 </resources>
