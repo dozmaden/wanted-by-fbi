@@ -1,16 +1,14 @@
 package com.ozmaden.wantedbyfbi.android
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.ozmaden.wantedbyfbi.shared.WantedSDK
-import com.ozmaden.wantedbyfbi.shared.cache.DatabaseDriverFactory
 import com.ozmaden.wantedbyfbi.shared.network.WantedApi
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -23,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBarView: FrameLayout
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-//    private val sdk = WantedSDK(DatabaseDriverFactory(this))
+    //    private val sdk = WantedSDK(DatabaseDriverFactory(this))
     private val api = WantedApi()
 
     private val wantedRvAdapter = WantedRvAdapter(listOf())
@@ -32,6 +30,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         title = "Wanted by the FBI"
+
+        setContent {
+            
+        }
         setContentView(R.layout.activity_main)
 
         wantedRecyclerView = findViewById(R.id.wantedListRv)
