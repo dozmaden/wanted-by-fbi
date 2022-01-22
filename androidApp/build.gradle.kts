@@ -46,4 +46,5 @@ dependencies {
     implementation("androidx.activity:activity-compose:1.4.0")
     debugImplementation("androidx.compose.ui:ui-tooling:1.0.5")
     implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation("com.google.accompanist:accompanist-swiperefresh:0.20.3")
 }

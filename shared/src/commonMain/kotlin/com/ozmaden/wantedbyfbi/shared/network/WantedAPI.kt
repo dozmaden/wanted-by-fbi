@@ -20,9 +20,18 @@ class WantedApi {
         }
     }
 
-    suspend fun getAllPeople(): List<WantedPerson> {
+    suspend fun getAllPeople(): MutableList<List<WantedPerson>> {
+        val all = mutableListOf<List<WantedPerson>>()
+        for (i in 1..46){
+            val item = getPeopleFromPage(i)
+            all.add(item)
+        }
+        return all
+    }
+
+    suspend fun getPeopleFromPage(page : Int): List<WantedPerson> {
         val db: WantedDatabase = httpClient.get(WANTED_ENDPOINT){
-            parameter("page", Random.nextInt(1, 46).toString())
+            parameter("page", page)
         }
         return db.items
     }
