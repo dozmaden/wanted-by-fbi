@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import androidx.compose.ui.platform.ComposeView
 import coil.load
 import com.ozmaden.wantedbyfbi.shared.entity.WantedPerson
 
