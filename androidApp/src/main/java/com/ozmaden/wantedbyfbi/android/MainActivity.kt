@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
     //    private val sdk = WantedSDK(DatabaseDriverFactory(this))
     private val api = WantedApi()
 
-    private val wantedRvAdapter = WantedRvAdapter(listOf())
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
