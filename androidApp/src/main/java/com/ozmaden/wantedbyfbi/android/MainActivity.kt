@@ -6,10 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.input.TextFieldValue
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.ozmaden.wantedbyfbi.android.ui.TopBar
 import com.ozmaden.wantedbyfbi.android.ui.WantedList
 import com.ozmaden.wantedbyfbi.android.ui.theme.ComposeTheme
 import com.ozmaden.wantedbyfbi.shared.WantedSDK
@@ -24,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title = "Wanted by the FBI"
         displayWanted()
     }
 
@@ -38,8 +41,7 @@ class MainActivity : AppCompatActivity() {
                     ComposeTheme {
                         Surface(color = MaterialTheme.colors.background) {
                             Scaffold(
-                                //topBar = { TopBar() },
-//                                backgroundColor = colorResource(id = R.color.co)
+                                topBar = { TopBar() }
                             ) {
                                 var refreshing by remember { mutableStateOf(false) }
                                 LaunchedEffect(refreshing) {
