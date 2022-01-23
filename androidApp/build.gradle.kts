@@ -39,7 +39,7 @@ dependencies {
     implementation("io.coil-kt:coil:1.4.0")
     implementation("androidx.compose.runtime:runtime:1.0.5")
     implementation("androidx.compose.compiler:compiler:1.0.5")
-    implementation ("androidx.compose.ui:ui:1.0.5")
+    implementation("androidx.compose.ui:ui:1.0.5")
     implementation("androidx.compose.material:material:1.0.5")
     implementation("androidx.compose.ui:ui-tooling-preview:1.0.5")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")

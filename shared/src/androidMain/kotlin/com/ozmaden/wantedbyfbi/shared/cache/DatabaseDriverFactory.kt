@@ -1,7 +1,6 @@
 package com.ozmaden.wantedbyfbi.shared.cache
 
 import android.content.Context
-import com.ozmaden.wantedbyfbi.shared.cache.AppDatabase
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 

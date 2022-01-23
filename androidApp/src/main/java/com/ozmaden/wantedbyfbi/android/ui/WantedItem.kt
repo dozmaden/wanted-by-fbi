@@ -56,7 +56,7 @@ fun WantedItem(item: WantedPerson) {
     }
 }
 
-fun processInfo(info : String, limit : Int): String {
+fun processInfo(info: String, limit: Int): String {
     val result = info.replace("<p>", "").replace("</p>", "")
     return if (info.length <= limit) {
         result

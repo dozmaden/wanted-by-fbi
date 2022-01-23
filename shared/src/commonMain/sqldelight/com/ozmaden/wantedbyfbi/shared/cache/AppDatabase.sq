@@ -1,10 +1,14 @@
 CREATE TABLE WantedPersons (
-    uid TEXT NOT NULL
+    uid TEXT NOT NULL,
+    image TEXT NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT,
+    remarks TEXT
 );
 
 insertPerson:
-INSERT INTO WantedPersons(uid)
-VALUES (?);
+INSERT INTO WantedPersons(uid, image, name, description, remarks)
+VALUES (?, ?, ?, ?, ?);
 
 removeAllPeople:
 DELETE FROM WantedPersons;
