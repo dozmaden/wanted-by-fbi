@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     private fun displayWanted() {
         mainScope.launch {
             kotlin.runCatching {
-                sdk.getWantedPeople(false)
+                sdk.getWantedPeople(true)
 //                api.getAllPeople()
             }.onSuccess {
                 val wantedPeople = it

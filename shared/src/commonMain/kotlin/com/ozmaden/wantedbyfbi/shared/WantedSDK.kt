@@ -19,6 +19,7 @@ class WantedSDK(databaseDriverFactory: DatabaseDriverFactory) {
                 database.clearDatabase()
                 database.createPeople(it)
             }
+            database.getWantedPeople()
         }
     }
 }
