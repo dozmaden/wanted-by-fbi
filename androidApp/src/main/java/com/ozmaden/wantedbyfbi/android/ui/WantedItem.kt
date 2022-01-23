@@ -8,7 +8,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
@@ -19,8 +18,7 @@ fun WantedItem(item: WantedPerson) {
     Row(modifier = Modifier.padding(all = 8.dp)) {
 
         var imageExpanded by remember { mutableStateOf(false) }
-        Column(verticalArrangement = Arrangement.Center,
-            modifier = Modifier.clickable { imageExpanded = !imageExpanded }) {
+        Column(modifier = Modifier.clickable { imageExpanded = !imageExpanded }) {
 
             Image(
                 painter = if (!imageExpanded) rememberImagePainter(item.image[0].thumb)
@@ -53,7 +51,7 @@ fun WantedItem(item: WantedPerson) {
                 item.description?.let {
                     val desc = processDescription(it)
                     Text(
-                        text =  if (!infoExpanded && desc.length > 75) "${desc.take(75)}..."
+                        text = if (!infoExpanded && desc.length > 75) "${desc.take(75)}..."
                         else desc,
                         fontWeight = FontWeight.SemiBold,
                         maxLines = if (!infoExpanded) 4 else Int.MAX_VALUE,
@@ -64,12 +62,12 @@ fun WantedItem(item: WantedPerson) {
                 Spacer(modifier = Modifier.height(4.dp))
 
                 item.remarks?.let {
-                    val rmrks = processDescription(it)
+                    val remarks = processDescription(it)
                     Text(
-                        text = if (!infoExpanded && rmrks.length > 50) "${rmrks.take(50)}..."
-                        else rmrks,
+                        text = if (!infoExpanded && remarks.length > 50) "${remarks.take(50)}..."
+                        else remarks,
                         fontWeight = FontWeight.Normal,
-                        maxLines =  if (!infoExpanded) 2 else Int.MAX_VALUE,
+                        maxLines = if (!infoExpanded) 2 else Int.MAX_VALUE,
                         style = MaterialTheme.typography.subtitle2
                     )
                 }
@@ -80,4 +78,5 @@ fun WantedItem(item: WantedPerson) {
 
 fun processDescription(info: String): String {
     return info.replace("<p>", "").replace("</p>", "")
+        .replace("<br />", "")
 }
