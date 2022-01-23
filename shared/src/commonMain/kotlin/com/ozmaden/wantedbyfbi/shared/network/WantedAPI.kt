@@ -7,9 +7,10 @@ import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import kotlinx.serialization.json.Json
-import kotlin.random.Random
 
 class WantedApi {
+    private val finalPage = 46
+
     private val httpClient = HttpClient {
         install(JsonFeature) {
             val json = Json {
@@ -20,17 +21,17 @@ class WantedApi {
         }
     }
 
-    suspend fun getAllPeople(): MutableList<List<WantedPerson>> {
+    suspend fun getAllPeople(): List<WantedPerson> {
         val all = mutableListOf<List<WantedPerson>>()
-        for (i in 1..46){
+        for (i in 1..finalPage) {
             val item = getPeopleFromPage(i)
             all.add(item)
         }
-        return all
+        return all.flatten()
     }
 
-    suspend fun getPeopleFromPage(page : Int): List<WantedPerson> {
-        val db: WantedDatabase = httpClient.get(WANTED_ENDPOINT){
+    private suspend fun getPeopleFromPage(page: Int): List<WantedPerson> {
+        val db: WantedDatabase = httpClient.get(WANTED_ENDPOINT) {
             parameter("page", page)
         }
         return db.items

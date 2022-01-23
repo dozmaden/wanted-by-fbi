@@ -18,7 +18,7 @@ fun WantedItem(item: WantedPerson) {
 
         Column(verticalArrangement = Arrangement.Center) {
             Image(
-                painter = rememberImagePainter(item.image[0].large),
+                painter = rememberImagePainter(item.image[0].thumb),
                 contentDescription = null,
                 modifier = Modifier.size(128.dp)
             )
@@ -56,7 +56,7 @@ fun WantedItem(item: WantedPerson) {
     }
 }
 
-fun processInfo(info : String, limit : Int): String {
+fun processInfo(info: String, limit: Int): String {
     val result = info.replace("<p>", "").replace("</p>", "")
     return if (info.length <= limit) {
         result
