@@ -18,8 +18,6 @@ import com.ozmaden.wantedbyfbi.shared.network.WantedApi
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlin.random.Random
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -60,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                             ) {
                                 WantedList(
                                     modifier = Modifier.fillMaxSize(),
-                                    it[Random.nextInt(1, 45)].shuffled(),
+                                    it.flatten().shuffled(),
                                 )
                             }
                         }

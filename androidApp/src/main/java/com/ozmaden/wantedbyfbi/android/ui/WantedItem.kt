@@ -15,11 +15,14 @@ import com.ozmaden.wantedbyfbi.shared.entity.WantedPerson
 @Composable
 fun WantedItem(item: WantedPerson) {
     Row {
-        Image(
-            painter = rememberImagePainter(item.image[0].large),
-            contentDescription = null,
-            modifier = Modifier.size(128.dp)
-        )
+
+        Column(verticalArrangement = Arrangement.Center) {
+            Image(
+                painter = rememberImagePainter(item.image[0].large),
+                contentDescription = null,
+                modifier = Modifier.size(128.dp)
+            )
+        }
 
         Spacer(modifier = Modifier.width(8.dp))
 
@@ -31,7 +34,7 @@ fun WantedItem(item: WantedPerson) {
 
             Spacer(modifier = Modifier.height(4.dp))
 
-            item.description?.let { Text(text = it.replace("<p>", "").replace("</p>", "")) }
+            item.description?.let { Text(text = processInfo(it, 100)) }
 //            item.place_of_birth?.let { Text(text = it) }
 //            item.date_of_birth?.let { Text(text = it) }
 //            item.hair?.let { Text(text = it) }
@@ -46,9 +49,18 @@ fun WantedItem(item: WantedPerson) {
 //            item.reward?.let { Text(text = it) }
 //            item.details?.let { Text(text = it.replace("<p>", "").replace("</p>", "")) }
             Spacer(modifier = Modifier.height(4.dp))
-            item.remarks?.let { Text(text = it.replace("<p>", "").replace("</p>", "")) }
+            item.remarks?.let { Text(text = processInfo(it, 70)) }
 //            item.caution?.let { Text(text = it.replace("<p>", "").replace("</p>", "")) }
 //            item.warning?.let { Text(text = it) }
         }
+    }
+}
+
+fun processInfo(info : String, limit : Int): String {
+    val result = info.replace("<p>", "").replace("</p>", "")
+    return if (info.length <= limit) {
+        result
+    } else {
+        result.take(limit).plus("...")
     }
 }
