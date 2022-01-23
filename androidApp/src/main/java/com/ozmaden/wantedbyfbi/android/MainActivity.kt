@@ -1,6 +1,7 @@
 package com.ozmaden.wantedbyfbi.android
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,13 +21,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
-    private val mainScope = MainScope()
-
     private val sdk = WantedSDK(DatabaseDriverFactory(this))
-    private val api = WantedApi()
-
-    lateinit var wanted: List<WantedPerson>
+    private val mainScope = MainScope()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +34,6 @@ class MainActivity : AppCompatActivity() {
         mainScope.launch {
             kotlin.runCatching {
                 sdk.getWantedPeople(false)
-//                WantedApi().getAllPeople()
             }.onSuccess {
                 val wantedPeople = it
                 setContent {
@@ -61,7 +56,8 @@ class MainActivity : AppCompatActivity() {
                                 ) {
                                     WantedList(
                                         modifier = Modifier.fillMaxSize(),
-                                        wantedPeople.shuffled(),
+//                                        wantedPeople,
+                                        wantedPeople.shuffled()
                                     )
                                 }
                             }
@@ -69,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }.onFailure {
-//                Toast.makeText(this@MainActivity, it.localizedMessage, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
         }
     }
