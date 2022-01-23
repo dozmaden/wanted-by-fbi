@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
-
 plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
@@ -47,7 +45,7 @@ kotlin {
             }
         }
         val androidMain by getting {
-            dependencies{
+            dependencies {
                 implementation("io.ktor:ktor-client-android:1.6.7")
                 implementation("com.squareup.sqldelight:android-driver:1.5.3")
             }

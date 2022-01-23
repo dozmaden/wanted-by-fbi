@@ -1,6 +1,5 @@
 package com.ozmaden.wantedbyfbi.shared.cache
 
-import com.ozmaden.wantedbyfbi.shared.cache.AppDatabase
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 
