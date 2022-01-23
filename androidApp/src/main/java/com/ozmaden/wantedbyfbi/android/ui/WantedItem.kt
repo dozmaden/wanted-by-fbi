@@ -1,9 +1,11 @@
 package com.ozmaden.wantedbyfbi.android.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -14,53 +16,68 @@ import com.ozmaden.wantedbyfbi.shared.entity.WantedPerson
 
 @Composable
 fun WantedItem(item: WantedPerson) {
-    Row {
+    Row(modifier = Modifier.padding(all = 8.dp)) {
 
-        Column(verticalArrangement = Arrangement.Center) {
+        var imageExpanded by remember { mutableStateOf(false) }
+        Column(verticalArrangement = Arrangement.Center,
+            modifier = Modifier.clickable { imageExpanded = !imageExpanded }) {
+
             Image(
-                painter = rememberImagePainter(item.image[0].thumb),
-                contentDescription = null,
-                modifier = Modifier.size(128.dp)
+                painter = if (!imageExpanded) rememberImagePainter(item.image[0].thumb)
+                else rememberImagePainter(item.image[0].large),
+                contentDescription = item.image[0].caption,
+                modifier = if (!imageExpanded) Modifier.size(128.dp)
+                else Modifier.size(512.dp)
             )
+
+            if (imageExpanded) {
+                ItemInfo(item = item)
+            }
         }
 
         Spacer(modifier = Modifier.width(8.dp))
 
-        Column {
-            Text(
-                text = item.name, textAlign = TextAlign.Center,
-                fontWeight = FontWeight.Bold, fontSize = 20.sp
-            )
+        var infoExpanded by remember { mutableStateOf(false) }
 
-            Spacer(modifier = Modifier.height(4.dp))
+        if (!imageExpanded) {
+            Column(modifier = Modifier.clickable { infoExpanded = !infoExpanded }) {
+                Text(
+                    text = item.name,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 20.sp,
+                    style = MaterialTheme.typography.body1
+                )
 
-            item.description?.let { Text(text = processInfo(it, 100)) }
-//            item.place_of_birth?.let { Text(text = it) }
-//            item.date_of_birth?.let { Text(text = it) }
-//            item.hair?.let { Text(text = it) }
-//            item.eyes?.let { Text(text = it) }
-//            item.height?.let { Text(text = it) }
-//            item.weight?.let { Text(text = it) }
-//            item.sex?.let { Text(text = it) }
-//            item.race?.let { Text(text = it) }
-//            item.nationality?.let { Text(text = it) }
-//            item.complexion?.let { Text(text = it) }
-//            item.scars_and_marks?.let { Text(text = it) }
-//            item.reward?.let { Text(text = it) }
-//            item.details?.let { Text(text = it.replace("<p>", "").replace("</p>", "")) }
-            Spacer(modifier = Modifier.height(4.dp))
-            item.remarks?.let { Text(text = processInfo(it, 70)) }
-//            item.caution?.let { Text(text = it.replace("<p>", "").replace("</p>", "")) }
-//            item.warning?.let { Text(text = it) }
+                Spacer(modifier = Modifier.height(4.dp))
+
+                item.description?.let {
+                    val desc = processDescription(it)
+                    Text(
+                        text =  if (!infoExpanded && desc.length > 75) "${desc.take(75)}..."
+                        else desc,
+                        fontWeight = FontWeight.SemiBold,
+                        maxLines = if (!infoExpanded) 4 else Int.MAX_VALUE,
+                        style = MaterialTheme.typography.subtitle1
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(4.dp))
+
+                item.remarks?.let {
+                    val rmrks = processDescription(it)
+                    Text(
+                        text = if (!infoExpanded && rmrks.length > 50) "${rmrks.take(50)}..."
+                        else rmrks,
+                        fontWeight = FontWeight.Normal,
+                        maxLines =  if (!infoExpanded) 2 else Int.MAX_VALUE,
+                        style = MaterialTheme.typography.subtitle2
+                    )
+                }
+            }
         }
     }
 }
 
-fun processInfo(info: String, limit: Int): String {
-    val result = info.replace("<p>", "").replace("</p>", "")
-    return if (info.length <= limit) {
-        result
-    } else {
-        result.take(limit).plus("...")
-    }
+fun processDescription(info: String): String {
+    return info.replace("<p>", "").replace("</p>", "")
 }
