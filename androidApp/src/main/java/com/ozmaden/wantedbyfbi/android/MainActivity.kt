@@ -14,8 +14,6 @@ import com.ozmaden.wantedbyfbi.android.ui.WantedList
 import com.ozmaden.wantedbyfbi.android.ui.theme.ComposeTheme
 import com.ozmaden.wantedbyfbi.shared.WantedSDK
 import com.ozmaden.wantedbyfbi.shared.cache.DatabaseDriverFactory
-import com.ozmaden.wantedbyfbi.shared.entity.WantedPerson
-import com.ozmaden.wantedbyfbi.shared.network.WantedApi
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -56,7 +54,6 @@ class MainActivity : AppCompatActivity() {
                                 ) {
                                     WantedList(
                                         modifier = Modifier.fillMaxSize(),
-//                                        wantedPeople,
                                         wantedPeople.shuffled()
                                     )
                                 }

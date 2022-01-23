@@ -29,7 +29,7 @@ fun ItemInfo(item: WantedPerson) {
     Text(
         text = item.name,
         fontWeight = FontWeight.ExtraBold,
-        fontSize = 30.sp,
+        fontSize = 35.sp,
         style = MaterialTheme.typography.body1,
         textAlign = TextAlign.Center
     )
@@ -40,7 +40,7 @@ fun ItemInfo(item: WantedPerson) {
         val desc = processDescription(it)
         Text(
             text = desc,
-            fontWeight = FontWeight.Normal,
+            fontWeight = FontWeight.SemiBold,
             fontSize = 20.sp,
             style = MaterialTheme.typography.body2,
         )
@@ -137,7 +137,7 @@ fun MapInfo(type: String, info: String) {
             )
         },
         fontWeight = FontWeight.Normal,
-        fontSize = 15.sp,
+        fontSize = 20.sp,
         modifier = Modifier.padding(1.dp)
     )
 }
