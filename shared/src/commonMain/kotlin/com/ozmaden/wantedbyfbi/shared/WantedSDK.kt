@@ -11,13 +11,16 @@ class WantedSDK(databaseDriverFactory: DatabaseDriverFactory) {
 
     @Throws(Exception::class)
     suspend fun getWantedPeople(forceReload: Boolean): List<WantedPerson> {
+//        If you change local database, clear the old one and create new one
+//        database.clearDatabase()
+//        database.createDatabase()
         val cachedPeople = database.getWantedPeople()
         return if (cachedPeople.isNotEmpty() && !forceReload) {
             cachedPeople
         } else {
             api.getAllPeople().also {
                 database.clearDatabase()
-                database.createPeople(it)
+                database.insertPeople(it)
             }
             database.getWantedPeople()
         }

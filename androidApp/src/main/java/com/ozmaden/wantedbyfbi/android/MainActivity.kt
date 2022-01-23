@@ -1,7 +1,6 @@
 package com.ozmaden.wantedbyfbi.android
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
@@ -38,8 +37,8 @@ class MainActivity : AppCompatActivity() {
     private fun displayWanted() {
         mainScope.launch {
             kotlin.runCatching {
-                sdk.getWantedPeople(true)
-//                api.getAllPeople()
+                sdk.getWantedPeople(false)
+//                WantedApi().getAllPeople()
             }.onSuccess {
                 val wantedPeople = it
                 setContent {
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                                 var refreshing by remember { mutableStateOf(false) }
                                 LaunchedEffect(refreshing) {
                                     if (refreshing) {
-                                        delay(3000)
+                                        delay(500)
                                         refreshing = false
                                     }
                                 }
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }.onFailure {
-                Toast.makeText(this@MainActivity, it.localizedMessage, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@MainActivity, it.localizedMessage, Toast.LENGTH_SHORT).show()
             }
         }
     }

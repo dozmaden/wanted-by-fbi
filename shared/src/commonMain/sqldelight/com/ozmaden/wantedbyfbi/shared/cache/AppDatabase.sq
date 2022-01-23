@@ -1,17 +1,35 @@
-CREATE TABLE WantedPersons (
+createDatabase:
+CREATE TABLE WantedPeople (
     uid TEXT NOT NULL,
-    image TEXT NOT NULL,
+    thumb TEXT NOT NULL,
+    large TEXT,
+    caption TEXT,
+    original TEXT,
     name TEXT NOT NULL,
     description TEXT,
-    remarks TEXT
+    date_of_birth TEXT,
+    place_of_birth TEXT,
+    hair TEXT,
+    eyes TEXT,
+    height TEXT,
+    weight TEXT,
+    sex TEXT,
+    nationality TEXT,
+    complexion TEXT,
+    scars_and_marks TEXT,
+    reward TEXT,
+    details TEXT,
+    remarks TEXT,
+    caution TEXT,
+    warning TEXT
 );
 
 insertPerson:
-INSERT INTO WantedPersons(uid, image, name, description, remarks)
-VALUES (?, ?, ?, ?, ?);
+INSERT INTO WantedPeople(uid, thumb, large, caption, original, name, description, date_of_birth, place_of_birth, hair, eyes, height, weight, sex, nationality, complexion, scars_and_marks, reward, details, remarks, caution, warning)
+VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?, ?, ?, ?, ?, ?,?,?, ?, ?, ?, ?);
 
 removeAllPeople:
-DELETE FROM WantedPersons;
+DELETE FROM WantedPeople;
 
 selectAllPeople:
-SELECT * FROM WantedPersons;
+SELECT * FROM WantedPeople;
