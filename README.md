@@ -4,7 +4,7 @@ This is a Kotlin Multiplatform Mobile (KMM) application for displaying a list of
 All info is taken from the public FBI API.
 
 ## App Demonstration
-![image](https://i.imgur.com/NksqdAc.mp4)
+![image](https://i.imgur.com/NksqdAc.gif)
 
 ## TO-DO
 - [x] Basic Android Application
