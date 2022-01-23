@@ -1,14 +1,18 @@
 package com.ozmaden.wantedbyfbi.android
 
 import android.os.Bundle
+import android.view.Window
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.sp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ozmaden.wantedbyfbi.android.ui.WantedList
@@ -30,9 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         title = "Wanted by the FBI"
-
         displayWanted()
     }
 
@@ -42,24 +44,30 @@ class MainActivity : AppCompatActivity() {
 //                sdk.getPeople(needReload)
                 api.getAllPeople()
             }.onSuccess {
+                val wantedPeople = it
                 setContent {
                     ComposeTheme {
                         Surface(color = MaterialTheme.colors.background) {
-                            var refreshing by remember { mutableStateOf(false) }
-                            LaunchedEffect(refreshing) {
-                                if (refreshing) {
-                                    delay(3000)
-                                    refreshing = false
-                                }
-                            }
-                            SwipeRefresh(
-                                state = rememberSwipeRefreshState(isRefreshing = refreshing),
-                                onRefresh = { refreshing = true },
+                            Scaffold(
+                                //topBar = { TopBar() },
+//                                backgroundColor = colorResource(id = R.color.co)
                             ) {
-                                WantedList(
-                                    modifier = Modifier.fillMaxSize(),
-                                    it.flatten().shuffled(),
-                                )
+                                var refreshing by remember { mutableStateOf(false) }
+                                LaunchedEffect(refreshing) {
+                                    if (refreshing) {
+                                        delay(3000)
+                                        refreshing = false
+                                    }
+                                }
+                                SwipeRefresh(
+                                    state = rememberSwipeRefreshState(isRefreshing = refreshing),
+                                    onRefresh = { refreshing = true },
+                                ) {
+                                    WantedList(
+                                        modifier = Modifier.fillMaxSize(),
+                                        wantedPeople.flatten().shuffled(),
+                                    )
+                                }
                             }
                         }
                     }
